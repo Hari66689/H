@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10111d">
+  <title>Hello, Hari!</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+    :root { color-scheme: dark; font-family: Manrope, ui-sans-serif, system-ui, sans-serif; }
+    * { box-sizing: border-box; }
+    body {
+      min-height: 100svh; margin: 0; overflow: hidden; display: grid; place-items: center;
+      color: #f5f2ff; background: #10111d;
+      background-image: radial-gradient(ellipse at 18% 15%, #35205b 0, transparent 34%),
+        radial-gradient(ellipse at 85% 82%, #153d50 0, transparent 35%),
+        linear-gradient(145deg, #11121f, #171526 58%, #101821);
+    }
+    body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opacity: .18;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E"); }
+    .orb { position: fixed; border-radius: 50%; filter: blur(1px); pointer-events: none; animation: drift 12s ease-in-out infinite alternate; }
+    .orb.one { width: 330px; height: 330px; left: -120px; top: 12%; background: radial-gradient(circle at 65% 35%, #b78bff66, transparent 68%); }
+    .orb.two { width: 390px; height: 390px; right: -130px; bottom: -100px; background: radial-gradient(circle at 35% 35%, #47d9db42, transparent 69%); animation-delay: -5s; }
+    main { width: min(790px, calc(100% - 36px)); position: relative; z-index: 1; text-align: center; padding: 70px 36px 54px; }
+    .sparkle { color: #c9a7ff; font-size: 21px; display: inline-block; margin-bottom: 25px; animation: twinkle 2.8s ease-in-out infinite; }
+    .eyebrow { display: flex; align-items: center; justify-content: center; gap: 10px; color: #bdb5d0; font: 500 11px 'DM Mono', monospace; letter-spacing: .2em; text-transform: uppercase; }
+    .eyebrow::before, .eyebrow::after { content: ""; width: 28px; height: 1px; background: linear-gradient(90deg, transparent, #8e79b4); }
+    .eyebrow::after { transform: rotate(180deg); }
+    h1 { margin: 22px 0 17px; font-size: clamp(58px, 10vw, 102px); line-height: .99; letter-spacing: -.075em; font-weight: 800; }
+    h1 span { display: block; background: linear-gradient(110deg, #fff 12%, #dbcaff 47%, #a2f2eb 94%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .subtitle { color: #aba8bc; font-size: clamp(15px, 2.2vw, 18px); line-height: 1.7; margin: 0 auto; max-width: 440px; }
+    .card { margin: 37px auto 0; width: min(440px, 100%); padding: 15px 16px 15px 20px; border: 1px solid #ffffff1c; border-radius: 13px;
+      background: linear-gradient(135deg, #ffffff0c, #ffffff05); box-shadow: 0 18px 60px #0003, inset 0 1px #ffffff0b;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px; text-align: left; backdrop-filter: blur(12px); }
+    code { font: 13px 'DM Mono', monospace; color: #d8d0e8; white-space: nowrap; }
+    code .prompt { color: #8ee3d8; } code .command { color: #c8aaff; }
+    button { cursor: pointer; color: #f8f5ff; border: 1px solid #ffffff20; border-radius: 8px; padding: 9px 12px; background: #ffffff0d;
+      font: 600 12px Manrope, sans-serif; transition: background .2s, border-color .2s, transform .2s; }
+    button:hover { background: #ffffff19; border-color: #ffffff42; transform: translateY(-1px); }
+    button:focus-visible { outline: 2px solid #b89aff; outline-offset: 3px; }
+    .footer { margin-top: 30px; color: #777489; font: 11px 'DM Mono', monospace; letter-spacing: .08em; }
+    .footer b { color: #8ee3d8; font-weight: 400; }
+    @keyframes twinkle { 0%, 100% { transform: rotate(0) scale(1); opacity: .8; } 50% { transform: rotate(28deg) scale(1.25); opacity: 1; } }
+    @keyframes drift { to { transform: translate(22px, -16px) scale(1.06); } }
+    @media (max-width: 480px) { main { padding: 48px 16px 42px; } .card { padding-left: 14px; } code { font-size: 11px; } button { padding: 8px 9px; } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; } }
+  </style>
+</head>
+<body>
+  <div class="orb one" aria-hidden="true"></div>
+  <div class="orb two" aria-hidden="true"></div>
+  <main>
+    <div class="sparkle" aria-hidden="true">✳</div>
+    <div class="eyebrow">A little something to start</div>
+    <h1><span>Hello,</span><span>world!</span></h1>
+    <p class="subtitle">Every great idea begins with a first hello.<br>Here’s to wherever this one takes you.</p>
+    <div class="card">
+      <code><span class="prompt">❯</span> <span class="command">console</span>.log(<span style="color:#a5e8c4">"Hello, world!"</span>)</code>
+      <button id="copy" type="button" aria-label="Copy hello world code">Copy code</button>
+    </div>
+    <div class="footer">MADE WITH <b>✦</b> AND A LITTLE CURIOSITY</div>
+  </main>
+  <script>
+    const button = document.querySelector('#copy');
+    button.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText('console.log("Hello, world!")');
+        button.textContent = 'Copied!';
+        window.setTimeout(() => { button.textContent = 'Copy code'; }, 1600);
+      } catch {
+        button.textContent = 'Select the code';
+        window.setTimeout(() => { button.textContent = 'Copy code'; }, 1600);
+      }
+    });
+  </script>
+</body>
+</html>
