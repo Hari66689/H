@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10111d">
+  <title>Gallery — Hello, world!</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap');
+    :root { color-scheme: dark; font-family: Manrope, ui-sans-serif, system-ui, sans-serif; }
+    * { box-sizing: border-box; }
+    body { min-height: 100svh; margin: 0; color: #f5f2ff; background: #10111d; background-image: radial-gradient(ellipse at 18% 15%, #35205b 0, transparent 34%), radial-gradient(ellipse at 85% 82%, #153d50 0, transparent 35%), linear-gradient(145deg, #11121f, #171526 58%, #101821); }
+    body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opacity: .18; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E"); }
+    nav { position: fixed; z-index: 2; top: 24px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; padding: 6px; border: 1px solid #ffffff18; border-radius: 999px; background: #171625c9; backdrop-filter: blur(14px); }
+    nav a { color: #aaa6bb; text-decoration: none; font-size: 12px; font-weight: 600; padding: 9px 15px; border-radius: 999px; transition: color .2s, background .2s; }
+    nav a:hover, nav a[aria-current="page"] { color: #fff; background: #ffffff14; } nav a:focus-visible { outline: 2px solid #b89aff; outline-offset: 2px; }
+    main { width: min(1040px, calc(100% - 40px)); margin: 0 auto; padding: 145px 0 72px; position: relative; z-index: 1; }
+    .eyebrow { display: flex; align-items: center; gap: 10px; color: #bdb5d0; font: 500 11px 'DM Mono', monospace; letter-spacing: .2em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 28px; height: 1px; background: #8e79b4; }
+    h1 { margin: 18px 0 12px; font-size: clamp(54px, 9vw, 84px); line-height: 1; letter-spacing: -.075em; font-weight: 800; background: linear-gradient(110deg, #fff 12%, #dbcaff 52%, #a2f2eb 94%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .lead { margin: 0; color: #aaa6bb; font-size: 16px; line-height: 1.7; }
+    .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 36px; }
+    figure { margin: 0; overflow: hidden; border: 1px solid #ffffff1b; border-radius: 16px; background: #ffffff08; box-shadow: 0 18px 55px #0002; }
+    .art { height: 220px; position: relative; overflow: hidden; isolation: isolate; }
+    .art::before, .art::after { content: ""; position: absolute; display: block; }
+    .art.dawn { background: linear-gradient(160deg, #402857, #aa6381 52%, #f3b28d); }
+    .dawn::before { width: 135px; height: 135px; border-radius: 50%; background: linear-gradient(145deg, #ffe3b1, #ffba9c); left: calc(50% - 68px); top: 32px; box-shadow: 0 0 60px #ffd5a477; }
+    .dawn::after { inset: 55% -10% -35%; border-radius: 50% 50% 0 0; background: linear-gradient(155deg, #302848, #172039); box-shadow: 0 -20px 60px #502f6277; }
+    .art.ripple { background: radial-gradient(ellipse at 50% 110%, #178b94, #153b54 54%, #19213d); }
+    .ripple::before { width: 210px; height: 210px; border: 1px solid #9cf5ebaa; border-radius: 50%; left: calc(50% - 105px); top: 44px; box-shadow: 0 0 0 18px #78e8de12, 0 0 0 38px #78e8de12, 0 0 0 60px #78e8de0d, inset 0 0 45px #4bd2d155; }
+    .ripple::after { width: 76px; height: 76px; left: calc(50% - 38px); top: 111px; border-radius: 50%; background: #a2f2eb33; filter: blur(2px); }
+    .art.bloom { background: linear-gradient(145deg, #2a1c46, #75406e 58%, #ca7585); }
+    .bloom::before { width: 150px; height: 150px; left: calc(50% - 75px); top: 35px; border-radius: 50%; background: repeating-conic-gradient(from 8deg, #ffcfb1 0 10deg, #f3a9b8 10deg 20deg, #aa7dd2 20deg 30deg); mask: radial-gradient(circle, transparent 0 18%, #000 20% 67%, transparent 69%); filter: drop-shadow(0 0 18px #ffb2c566); }
+    .bloom::after { width: 34px; height: 34px; left: calc(50% - 17px); top: 93px; border-radius: 50%; background: #ffe0a3; box-shadow: 0 0 28px #ffe0a3aa; }
+    .art.orbit { background: radial-gradient(ellipse at 50% 100%, #263b5e, #121927 70%); }
+    .orbit::before { width: 190px; height: 190px; left: calc(50% - 95px); top: 60px; border: 1px solid #a4a9ffbb; border-radius: 50%; transform: rotate(-25deg) scaleY(.45); box-shadow: 0 0 25px #8f8aff55; }
+    .orbit::after { width: 100px; height: 100px; left: calc(50% - 50px); top: 77px; border-radius: 50%; background: radial-gradient(circle at 32% 30%, #f4d8ff, #9c8cf0 50%, #4a4e94); box-shadow: 0 0 45px #9f8fff77; }
+    .art.drift { background: linear-gradient(150deg, #173448, #257f82 50%, #b2b07b); }
+    .drift::before { width: 260px; height: 120px; left: calc(50% - 130px); top: 55px; border-radius: 50%; background: linear-gradient(135deg, #f5e5b6, #93d5c9 55%, #6ca7b2); transform: rotate(-18deg); box-shadow: 0 22px 50px #081a3377; }
+    .drift::after { width: 170px; height: 42px; left: calc(50% - 85px); top: 110px; border-radius: 50%; background: #224758; transform: rotate(-18deg); }
+    .art.starry { background: radial-gradient(ellipse at 50% 120%, #633c84, #241d43 62%, #131829); }
+    .starry::before { width: 130px; height: 130px; left: calc(50% - 65px); top: 43px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #d9f7e7, #8ebfd3 48%, #8174b7); box-shadow: 0 0 55px #89b5ff77; }
+    .starry::after { width: 250px; height: 72px; left: calc(50% - 125px); top: 74px; border: 8px solid #e9c7ff99; border-radius: 50%; transform: rotate(-22deg) scaleY(.55); box-shadow: 0 0 24px #cca9ff99; }
+    figcaption { padding: 16px 18px 18px; } figcaption h2 { margin: 0 0 5px; font-size: 14px; } figcaption p { margin: 0; color: #9995aa; font: 11px 'DM Mono', monospace; letter-spacing: .03em; }
+    .footer { margin-top: 38px; color: #777489; font: 11px 'DM Mono', monospace; letter-spacing: .08em; } .footer b { color: #8ee3d8; font-weight: 400; }
+    @media (max-width: 760px) { .gallery { grid-template-columns: repeat(2, 1fr); gap: 14px; } .art { height: 200px; } }
+    @media (max-width: 500px) { main { padding-top: 125px; } nav { gap: 0; } nav a { padding: 9px 11px; font-size: 11px; } .gallery { grid-template-columns: 1fr; } .art { height: 230px; } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; } }
+  </style>
+</head>
+<body>
+  <nav aria-label="Main navigation"><a href="index.html">Home</a><a href="about.html">About</a><a href="gallery.html" aria-current="page">Gallery</a><a href="contact.html">Contact</a></nav>
+  <main>
+    <div class="eyebrow">A few things to look at</div>
+    <h1>Little gallery.</h1>
+    <p class="lead">Small color studies for curious minds. Each scene is drawn with gradients and a little CSS.</p>
+    <section class="gallery" aria-label="Abstract artwork gallery">
+      <figure><div class="art dawn" role="img" aria-label="A glowing sun rising over a dusky horizon"></div><figcaption><h2>First light</h2><p>01 / A new beginning</p></figcaption></figure>
+      <figure><div class="art ripple" role="img" aria-label="Concentric turquoise ripples on deep water"></div><figcaption><h2>Quiet ripple</h2><p>02 / Make a little space</p></figcaption></figure>
+      <figure><div class="art bloom" role="img" aria-label="A bright geometric flower against a plum sky"></div><figcaption><h2>Soft bloom</h2><p>03 / Let ideas open</p></figcaption></figure>
+      <figure><div class="art orbit" role="img" aria-label="A lavender planet surrounded by a glowing orbit"></div><figcaption><h2>Somewhere out there</h2><p>04 / Stay curious</p></figcaption></figure>
+      <figure><div class="art drift" role="img" aria-label="A pale shape drifting above a teal landscape"></div><figcaption><h2>Slow drift</h2><p>05 / Take your time</p></figcaption></figure>
+      <figure><div class="art starry" role="img" aria-label="A glowing blue planet wrapped in a violet ring"></div><figcaption><h2>Small universe</h2><p>06 / Big possibilities</p></figcaption></figure>
+    </section>
+    <div class="footer">MADE WITH <b>✦</b> AND A LITTLE CURIOSITY</div>
+  </main>
+</body>
+</html>
