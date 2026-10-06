@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10111d">
+  <title>Contact — Hello, world!</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap');
+    :root { color-scheme: dark; font-family: Manrope, ui-sans-serif, system-ui, sans-serif; }
+    * { box-sizing: border-box; }
+    body { min-height: 100svh; margin: 0; color: #f5f2ff; background: #10111d; background-image: radial-gradient(ellipse at 18% 15%, #35205b 0, transparent 34%), radial-gradient(ellipse at 85% 82%, #153d50 0, transparent 35%), linear-gradient(145deg, #11121f, #171526 58%, #101821); }
+    body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opacity: .18; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E"); }
+    nav { position: fixed; z-index: 2; top: 24px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; padding: 6px; border: 1px solid #ffffff18; border-radius: 999px; background: #171625a8; backdrop-filter: blur(14px); }
+    nav a { color: #aaa6bb; text-decoration: none; font-size: 12px; font-weight: 600; padding: 9px 15px; border-radius: 999px; transition: color .2s, background .2s; }
+    nav a:hover, nav a[aria-current="page"] { color: #fff; background: #ffffff14; } nav a:focus-visible { outline: 2px solid #b89aff; outline-offset: 2px; }
+    main { width: min(700px, calc(100% - 36px)); margin: 0 auto; padding: 150px 0 72px; position: relative; z-index: 1; }
+    .eyebrow { display: flex; align-items: center; gap: 10px; color: #bdb5d0; font: 500 11px 'DM Mono', monospace; letter-spacing: .2em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 28px; height: 1px; background: #8e79b4; }
+    h1 { margin: 18px 0; font-size: clamp(54px, 9vw, 88px); line-height: 1; letter-spacing: -.075em; font-weight: 800; background: linear-gradient(110deg, #fff 12%, #dbcaff 52%, #a2f2eb 94%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .lead { color: #aaa6bb; font-size: 17px; line-height: 1.75; max-width: 550px; }
+    .panel { margin-top: 32px; padding: 28px; border: 1px solid #ffffff1c; border-radius: 16px; background: linear-gradient(135deg, #ffffff0c, #ffffff05); box-shadow: 0 18px 60px #0003, inset 0 1px #ffffff0b; }
+    label { display: block; margin: 0 0 8px; color: #d8d0e8; font-size: 13px; font-weight: 600; }
+    input, textarea { width: 100%; border: 1px solid #ffffff20; border-radius: 9px; background: #10111d99; color: #f5f2ff; padding: 12px 13px; font: 14px Manrope, sans-serif; outline: none; }
+    input:focus, textarea:focus { border-color: #b89aff; box-shadow: 0 0 0 3px #b89aff20; }
+    textarea { min-height: 130px; resize: vertical; }
+    .field { margin-bottom: 18px; } .hint { margin: -8px 0 18px; color: #858195; font-size: 12px; }
+    button { cursor: pointer; border: 1px solid #ffffff22; border-radius: 9px; color: #171526; background: linear-gradient(110deg, #d9c4ff, #a2f2eb); padding: 12px 17px; font: 700 13px Manrope, sans-serif; transition: transform .2s, filter .2s; }
+    button:hover { transform: translateY(-1px); filter: brightness(1.08); } button:focus-visible { outline: 2px solid #b89aff; outline-offset: 3px; }
+    .footer { margin-top: 34px; color: #777489; font: 11px 'DM Mono', monospace; letter-spacing: .08em; } .footer b { color: #8ee3d8; font-weight: 400; }
+    @media (max-width: 560px) { main { padding-top: 125px; } .panel { padding: 21px; } }
+  </style>
+</head>
+<body>
+  <nav aria-label="Main navigation"><a href="index.html">Home</a><a href="about.html">About</a><a href="contact.html" aria-current="page">Contact</a></nav>
+  <main>
+    <div class="eyebrow">Say hello</div>
+    <h1>Let’s talk.</h1>
+    <p class="lead">Have an idea, a question, or just want to share what you’re making? Drop a note below.</p>
+    <form class="panel" id="contact-form">
+      <div class="field"><label for="name">Your name</label><input id="name" name="name" type="text" autocomplete="name" placeholder="Ada Lovelace" required></div>
+      <div class="field"><label for="email">Email address</label><input id="email" name="email" type="email" autocomplete="email" placeholder="ada@example.com" required></div>
+      <div class="field"><label for="message">Your message</label><textarea id="message" name="message" placeholder="Write a little something…" required></textarea></div>
+      <p class="hint">This is a front-end demo; it isn’t connected to an inbox yet.</p>
+      <button type="submit">Send a message&nbsp; ↗</button>
+      <p id="form-status" class="hint" role="status" aria-live="polite" hidden></p>
+    </form>
+    <div class="footer">MADE WITH <b>✦</b> AND A LITTLE CURIOSITY</div>
+  </main>
+  <script>
+    document.querySelector('#contact-form').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const status = document.querySelector('#form-status');
+      status.textContent = 'Thanks for writing! The form is ready to connect to an inbox.';
+      status.hidden = false;
+    });
+  </script>
+</body>
+</html>
